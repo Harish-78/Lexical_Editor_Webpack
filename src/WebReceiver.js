@@ -24,12 +24,7 @@ const WebViewReceiver = ({ setHtml }) => {
     }
   }, [])
 
-  return (
-    <div>
-      <h1>Message from React Native:</h1>
-      <div>{message ? message : 'No message received yet'}</div>
-    </div>
-  )
+  return <div></div>
 }
 
 export default WebViewReceiver
