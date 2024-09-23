@@ -7,18 +7,7 @@
   </head>
   <body>
     <div id="root"></div>
-    <script>
-      // Listen for messages from React Native
-      window.addEventListener('message', (event) => {
-        const message = event.data // Data from React Native
-        console.log('Message received from React Native:', message)
-        // Do something with the message
-      })
-
-      // Optionally, you can send a message back to React Native
-      function sendMessageToReactNative(message) {
-        window.ReactNativeWebView.postMessage(message)
-      }
+   
     </script>
   </body>
 </html>

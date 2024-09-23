@@ -4,17 +4,12 @@ const WebViewReceiver = ({ setHtml }) => {
   const [message, setMessage] = useState('')
   useEffect(() => {
     const handleMessage = (event) => {
-      // Ensure the message is from the expected source (e.g., add security checks)
       if (event.data) {
         try {
           const data = JSON.parse(event.data)
           console.log('Received message from RN:', data)
-          if (typeof data.value.value === 'string') {
-            setHtml(data.value.value) // Set the message in state (you can adjust what you display)
-            setMessage(data.value.value)
-          } else {
-            setMessage(JSON.stringify(event.data))
-          }
+          setHtml(data.value.value)
+          setMessage(JSON.stringify(event.data))
         } catch (error) {
           console.error('error')
         }
