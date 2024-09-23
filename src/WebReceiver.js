@@ -12,6 +12,8 @@ const WebViewReceiver = ({ setHtml }) => {
           if (typeof data.value.value === 'string') {
             setHtml(data.value.value) // Set the message in state (you can adjust what you display)
             setMessage(data.value.value)
+          } else {
+            setMessage(JSON.stringify(event.data))
           }
         } catch (error) {
           console.error('error')
