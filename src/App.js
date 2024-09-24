@@ -19,9 +19,9 @@ const App = () => {
   return (
     <div>
       <LexicalEditor
-        value={html}
+        value={message}
         onChange={(event) => {
-          setHtml(event)
+          setMessage(event)
         }}
       />
       <WebViewReceiver setHtml={setMessage} />
