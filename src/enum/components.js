@@ -1,0 +1,23 @@
+const componentsEnum = Object.freeze({
+  OMS: 'OMS',
+  TMS: 'TMS',
+  CMS: 'Campaign Manager',
+  Flows: 'Flows',
+  LandingPages: 'Landing Page',
+  Invoices: 'Invoicing',
+  Forms: 'Forms',
+  ItemList: 'Item List',
+  Projects: 'Projects',
+  Products: 'Products',
+  MessageBoard: 'MessageBoard',
+  Wiki: 'Wiki',
+  ManageTemplates: 'ManageTemplates',
+  Chat: 'Chat',
+  Campaign: 'Campaign',
+  TicketDetails: 'TicketDetails',
+  Remainder: 'Remainder',
+  Spaces: 'Spaces',
+  CustomForms: 'CustomForms',
+  CRM: 'Customer_Relationship_Management',
+})
+export default componentsEnum

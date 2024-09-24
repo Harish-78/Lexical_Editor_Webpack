@@ -1,6 +1,6 @@
 import React from 'react'
-import App from './App'
 import { createRoot } from 'react-dom/client'
+import App from './LexicalEditor/App'
 
 createRoot(document.getElementById('root')).render(
   <React.StrictMode>

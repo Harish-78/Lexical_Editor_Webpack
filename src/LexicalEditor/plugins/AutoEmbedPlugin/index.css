@@ -1,0 +1,8 @@
+.lexical-video-dialog {
+  display: flex;
+  justify-content: center;
+}
+
+.lexical-video-dialog .ant-upload-wrapper {
+  text-align: center;
+}
