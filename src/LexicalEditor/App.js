@@ -253,9 +253,10 @@ export default function App({
   }
 
   useEffect(() => {
-    // Example of sending some initial data to React Native when the component loads
-    sendDataToNativeApp('Hello from the React app!')
-  }, [])
+    if (dataFromNative) {
+      sendDataToNativeApp(dataFromNative)
+    }
+  }, [dataFromNative])
 
   return (
     <SettingsContext>
@@ -279,11 +280,6 @@ export default function App({
           isExternal={isExternal}
           placeholder={placeholder}
         />
-        <button
-          onClick={() => sendDataToNativeApp(dataFromNative ?? 'New Value')}
-        >
-          Send to React Native
-        </button>
       </FlashMessageContext>
     </SettingsContext>
   )
