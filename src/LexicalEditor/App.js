@@ -241,9 +241,15 @@ export default function App({
     setDataFromNative(data) // Store or display data
   }
 
-  // Function to send data back to the React Native app
-  const sendDataToNativeApp = (data) => {
-    window.ReactNativeWebView.postMessage(data) // Post message to React Native app
+  function sendDataToNativeApp(data) {
+    if (
+      window.ReactNativeWebView &&
+      typeof window.ReactNativeWebView.postMessage === 'function'
+    ) {
+      window.ReactNativeWebView.postMessage(data) // Send data to React Native app
+    } else {
+      console.log('This is not running inside a WebView')
+    }
   }
 
   useEffect(() => {
@@ -273,7 +279,9 @@ export default function App({
           isExternal={isExternal}
           placeholder={placeholder}
         />
-        <button onClick={() => sendDataToNativeApp(dataFromNative)}>
+        <button
+          onClick={() => sendDataToNativeApp(dataFromNative ?? 'New Value')}
+        >
           Send to React Native
         </button>
       </FlashMessageContext>
