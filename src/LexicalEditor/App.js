@@ -241,20 +241,15 @@ export default function App({
     setDataFromNative(data) // Store or display data
   }
 
-  console.log({ dataFromNative })
-
-  const sendMessageToReactNative = () => {
-    try {
-      const data = { message: html }
-      window.ReactNativeWebView.postMessage(JSON.stringify(data))
-    } catch (error) {
-      console.error(error.message)
-    }
+  // Function to send data back to the React Native app
+  const sendDataToNativeApp = (data) => {
+    window.ReactNativeWebView.postMessage(data) // Post message to React Native app
   }
+
   useEffect(() => {
-    sendMessageToReactNative()
-  }, [html])
-  const [html, setHtml] = useState('')
+    // Example of sending some initial data to React Native when the component loads
+    sendDataToNativeApp('Hello from the React app!')
+  }, [])
 
   return (
     <SettingsContext>
@@ -262,9 +257,9 @@ export default function App({
         <LexicalEditor
           emailReplyThread={emailReplyThread}
           onEmailThreadChange={onEmailThreadChange}
-          value={html}
+          value={dataFromNative}
           onChange={(event) => {
-            setHtml(event)
+            setDataFromNative(event)
           }}
           mentionList={mentionList}
           entity_type={entity_type}
@@ -278,6 +273,9 @@ export default function App({
           isExternal={isExternal}
           placeholder={placeholder}
         />
+        <button onClick={() => sendDataToNativeApp(dataFromNative)}>
+          Send to React Native
+        </button>
       </FlashMessageContext>
     </SettingsContext>
   )
