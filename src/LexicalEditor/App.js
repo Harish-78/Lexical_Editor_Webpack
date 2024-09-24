@@ -235,11 +235,16 @@ export default function App({
 }) {
   const [dataFromNative, setDataFromNative] = useState('')
 
-  // Define the function that receives data from the React Native app
-  window.receiveDataFromNative = (data) => {
-    console.log('Received data from React Native:', data)
-    setDataFromNative(data) // Store or display data
-  }
+  // listener to receive msgs from react native
+  useEffect(() => {
+    const messageListener = window.addEventListener(
+      'message',
+      (nativeEvent) => {
+        console.log('Received data from React Native:', nativeEvent?.data)
+      }
+    )
+    return messageListener
+  }, [])
 
   function sendDataToNativeApp(data) {
     if (
