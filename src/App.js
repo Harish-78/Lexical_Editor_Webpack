@@ -12,19 +12,30 @@ const App = () => {
       console.error(error.message)
     }
   }
+  const sendMessageToReactNativeValue = (value) => {
+    try {
+      const data = { message: value }
+      window.ReactNativeWebView.postMessage(JSON.stringify(data))
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
 
-  useEffect(() => {
-    sendMessageToReactNative()
-  }, [message])
+  // useEffect(() => {
+  //   sendMessageToReactNative()
+  // }, [message])
   return (
     <div>
       <LexicalEditor
         value={message}
         onChange={(event) => {
-          setMessage(event)
+          // setMessage(event)
+          if (event !== `<p class="aroopa_editor__paragraph"><br></p>`) {
+            sendMessageToReactNativeValue(event)
+          }
         }}
       />
-      <WebViewComponent />
+      <WebViewComponent setHtml={setMessage} html={message} />
     </div>
   )
 }

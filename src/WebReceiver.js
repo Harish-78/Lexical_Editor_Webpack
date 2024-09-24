@@ -1,9 +1,16 @@
 import { useState, useEffect } from 'react'
 
-const WebViewComponent = () => {
+const WebViewComponent = ({ setHtml, html }) => {
   const [message, setMessage] = useState('')
-  const [html, setHtml] = useState('')
 
+  const sendMessageToReactNativeValue = (value) => {
+    try {
+      const data = { message: value }
+      window.ReactNativeWebView.postMessage(JSON.stringify(data))
+    } catch (error) {
+      console.error(error.message)
+    }
+  }
   useEffect(() => {
     const handleMessage = (event) => {
       if (event?.data) {
@@ -11,11 +18,11 @@ const WebViewComponent = () => {
           // Parse the incoming data
           const data = JSON.parse(event.data)
 
-          console.log('Received message from RN:', data)
+          // alert(`Received message from RN: ${data.key} `)
 
           // Assuming data.value.value is where the HTML content is
-          if (data?.value?.value) {
-            setHtml(data.value.value)
+          if (data?.key) {
+            setHtml(data.key)
           } else {
             console.warn('Received message does not contain expected value')
           }
@@ -43,7 +50,6 @@ const WebViewComponent = () => {
       {/* Render the HTML content from React Native */}
       <div dangerouslySetInnerHTML={{ __html: html }}></div>
       {/* Display the received message for debugging */}
-      <pre>{message}</pre>
     </div>
   )
 }
