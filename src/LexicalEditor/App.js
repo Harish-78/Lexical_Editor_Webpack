@@ -234,17 +234,24 @@ export default function App({
   placeholder,
 }) {
   const [dataFromNative, setDataFromNative] = useState('')
+  const [testData, setTEstData] = useState(null)
 
-  // listener to receive msgs from react native
   useEffect(() => {
-    const messageListener = window.addEventListener(
-      'message',
-      (nativeEvent) => {
-        console.log('Received data from React Native:', nativeEvent?.data)
-      }
-    )
-    return messageListener
+    const messageListener = (nativeEvent) => {
+      console.log('Received data from React Native:', nativeEvent?.data)
+      setTEstData(nativeEvent?.data)
+    }
+
+    // Add event listener for messages from React Native
+    window.addEventListener('message', messageListener)
+
+    // Clean up the event listener on component unmount
+    return () => {
+      window.removeEventListener('message', messageListener)
+    }
   }, [])
+
+  console.log({ testData })
 
   function sendDataToNativeApp(data) {
     if (
