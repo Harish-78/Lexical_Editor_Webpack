@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import LexicalEditor from './LexicalEditor/App'
-import WebViewReceiver from './WebReceiver'
+import WebViewComponent from './WebReceiver'
 
 const App = () => {
   const [message, setMessage] = useState('')
@@ -24,7 +24,7 @@ const App = () => {
           setMessage(event)
         }}
       />
-      <WebViewReceiver setHtml={setMessage} />
+      <WebViewComponent />
     </div>
   )
 }
