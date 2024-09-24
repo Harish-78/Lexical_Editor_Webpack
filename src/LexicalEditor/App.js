@@ -1,5 +1,5 @@
 import { LexicalComposer } from '@lexical/react/LexicalComposer'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { FlashMessageContext } from './context/FlashMessageContext.tsx'
 import { SettingsContext } from './context/SettingsContext.tsx'
 import { SharedAutocompleteContext } from './context/SharedAutocompleteContext.tsx'
@@ -17,7 +17,7 @@ import { getBase64 } from './plugins/Document/DocumentPlugin.js'
 import LandingPageEditorTheme from './themes/LandingPageEditorTheme.ts'
 import componentsEnum from '../enum/components.js'
 
-function LexicalEditor({
+function App({
   value,
   onChange,
   mentionList,
@@ -218,7 +218,9 @@ function LexicalEditor({
   )
 }
 
-export default function App({
+export default function LexicalEditor({
+  value,
+  onChange,
   mentionList,
   entity_type,
   entity_id,
@@ -233,56 +235,17 @@ export default function App({
   isExternal,
   placeholder,
 }) {
-  const [dataFromNative, setDataFromNative] = useState('')
-  const [testData, setTEstData] = useState(null)
-
-  useEffect(() => {
-    const messageListener = (nativeEvent) => {
-      console.log('Received data from React Native:', nativeEvent?.data)
-      setTEstData(nativeEvent?.data)
-    }
-
-    // Add event listener for messages from React Native
-    window.addEventListener('message', messageListener)
-
-    // Clean up the event listener on component unmount
-    return () => {
-      window.removeEventListener('message', messageListener)
-    }
-  }, [])
-
-  console.log({ testData })
-
-  function sendDataToNativeApp(data) {
-    if (
-      window.ReactNativeWebView &&
-      typeof window.ReactNativeWebView.postMessage === 'function'
-    ) {
-      window.ReactNativeWebView.postMessage(data) // Send data to React Native app
-    } else {
-      console.log('This is not running inside a WebView')
-    }
-  }
-
-  useEffect(() => {
-    if (dataFromNative) {
-      sendDataToNativeApp(dataFromNative)
-    }
-  }, [dataFromNative])
-
   return (
     <SettingsContext>
       <FlashMessageContext>
-        <LexicalEditor
+        <App
           emailReplyThread={emailReplyThread}
           onEmailThreadChange={onEmailThreadChange}
-          value={dataFromNative}
-          onChange={(event) => {
-            setDataFromNative(event)
-          }}
+          value={value}
           mentionList={mentionList}
           entity_type={entity_type}
           entity_id={entity_id}
+          onChange={onChange}
           editorDocuments={editorDocuments}
           onDocumentUpdate={onDocumentUpdate}
           defaultStyles={defaultStyles}
