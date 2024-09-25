@@ -439,14 +439,15 @@ export default function Editor({
   )
 
   const ToolbarPluginInstance = (
-    <ToolbarPlugin
-      setIsLinkEditMode={setIsLinkEditMode}
-      setShowTableOfContents={setShowTableOfContents}
-      htmlContent={htmlContent}
-      variables={variables}
-      handleAutocompleteChange={handleAutocompleteChange}
-      componentName={componentName}
-    />
+    // <ToolbarPlugin
+    //   setIsLinkEditMode={setIsLinkEditMode}
+    //   setShowTableOfContents={setShowTableOfContents}
+    //   htmlContent={htmlContent}
+    //   variables={variables}
+    //   handleAutocompleteChange={handleAutocompleteChange}
+    //   componentName={componentName}
+    // />
+    <></>
   )
 
   const MentionPluginInstance = (
@@ -487,7 +488,7 @@ export default function Editor({
           return (
             <>
               {isRichText && ToolbarPluginInstance}
-              <hr />
+
               <div
                 className={`editor-container ${
                   showTreeView ? 'tree-view' : ''
@@ -528,7 +529,6 @@ export default function Editor({
                 setIsLinkEditMode={setIsLinkEditMode}
                 defaultStyles={defaultStyles}
               />
-              <hr />
               <div
                 className={`editor-container ${
                   showTreeView ? 'tree-view' : ''
@@ -543,7 +543,7 @@ export default function Editor({
           return (
             <>
               {isRichText && ToolbarPluginInstance}
-              <hr />
+
               <div
                 className={`editor-container ${
                   showTreeView ? 'tree-view' : ''
@@ -559,7 +559,7 @@ export default function Editor({
           return (
             <>
               {isRichText && ToolbarPluginInstance}
-              <hr />
+
               <div
                 className={`editor-container ${
                   showTreeView ? 'tree-view' : ''
@@ -575,7 +575,7 @@ export default function Editor({
           return (
             <>
               {isRichText && ToolbarPluginInstance}
-              <hr />
+
               <div
                 className={`editor-container ${
                   showTreeView ? 'tree-view' : ''
@@ -590,7 +590,7 @@ export default function Editor({
           return (
             <>
               {isRichText && ToolbarPluginInstance}
-              <hr />
+
               <div
                 className={`editor-container ${
                   showTreeView ? 'tree-view' : ''
@@ -605,7 +605,7 @@ export default function Editor({
           return (
             <>
               {isRichText && ToolbarPluginInstance}
-              <hr />
+
               <div
                 className={`editor-container ${
                   showTreeView ? 'tree-view' : ''
@@ -621,7 +621,7 @@ export default function Editor({
           return (
             <>
               {isRichText && ToolbarPluginInstance}
-              <hr />
+
               <div
                 className={`editor-container ${
                   showTreeView ? 'tree-view' : ''

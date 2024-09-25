@@ -38,14 +38,11 @@
 }
 
 .editor-scroller {
-  min-height: 150px;
   border: 0;
   display: flex;
-
   outline: 0;
   z-index: 0;
   overflow: auto;
-  resize: vertical;
   width: 100%;
 }
 

@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 const WebViewComponent = ({ setHtml, html }) => {
   useEffect(() => {
     const handleMessage = (event) => {
-
       if (event?.data) {
         try {
           // Parse the incoming data
@@ -35,15 +34,6 @@ const WebViewComponent = ({ setHtml, html }) => {
       window.removeEventListener('message', handleMessage)
     }
   }, [])
-
-  return (
-    <div>
-      <h1>WebView Content</h1>
-      {/* Render the HTML content from React Native */}
-      <div dangerouslySetInnerHTML={{ __html: html }}></div>
-      {/* Display the received message for debugging */}
-    </div>
-  )
 }
 
 export default WebViewComponent
