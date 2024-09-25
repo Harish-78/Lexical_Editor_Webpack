@@ -396,7 +396,6 @@ export default function Editor({
 
           {floatingAnchorElem && (
             <>
-              <DraggableBlockPlugin anchorElem={floatingAnchorElem} />
               <CodeActionMenuPlugin anchorElem={floatingAnchorElem} />
               <FloatingLinkEditorPlugin
                 anchorElem={floatingAnchorElem}
