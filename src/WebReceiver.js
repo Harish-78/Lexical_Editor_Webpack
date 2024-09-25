@@ -1,18 +1,9 @@
 import { useState, useEffect } from 'react'
 
 const WebViewComponent = ({ setHtml, html }) => {
-  const [message, setMessage] = useState('')
-
-  const sendMessageToReactNativeValue = (value) => {
-    try {
-      const data = { message: value }
-      window.ReactNativeWebView.postMessage(JSON.stringify(data))
-    } catch (error) {
-      console.error(error.message)
-    }
-  }
   useEffect(() => {
     const handleMessage = (event) => {
+
       if (event?.data) {
         try {
           // Parse the incoming data
@@ -35,11 +26,12 @@ const WebViewComponent = ({ setHtml, html }) => {
       }
     }
 
-    // Add event listener for messages from React Native
+    document.addEventListener('message', handleMessage)
     window.addEventListener('message', handleMessage)
 
     // Clean up the event listener on component unmount
     return () => {
+      document.removeEventListener('message', handleMessage)
       window.removeEventListener('message', handleMessage)
     }
   }, [])
