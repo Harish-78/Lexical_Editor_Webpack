@@ -32,8 +32,8 @@ module.exports = {
     ],
   },
   output: {
-    path: path.resolve(__dirname, '..', './build'),
-    filename: 'bundle.js',
+    path: path.resolve(__dirname, '..', './dist'),
+    filename: 'lexical.embed.js',
     publicPath: '/',
   },
   devServer: {
@@ -41,7 +41,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: path.resolve(__dirname, '..', './public/index.html'),
+      template: path.resolve(__dirname, '..', './public/lexical.html'),
     }),
   ],
   stats: 'errors-only',

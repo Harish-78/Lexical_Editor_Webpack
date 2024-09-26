@@ -8,31 +8,30 @@
 
 import { type Klass, type LexicalNode } from 'lexical'
 
-import { CodeHighlightNode, CodeNode } from '../nodes/CodeNode/index.ts'
+import { CodeHighlightNode, CodeNode } from '../nodes/CodeNode/index'
 import { HashtagNode } from '@lexical/hashtag'
 import { AutoLinkNode, LinkNode } from '@lexical/link'
 import { MarkNode } from '@lexical/mark'
 import { OverflowNode } from '@lexical/overflow'
 import { HorizontalRuleNode } from '@lexical/react/LexicalHorizontalRuleNode'
 import { HeadingNode, QuoteNode } from '@lexical/rich-text'
-import { CollapsibleContainerNode } from '../plugins/CollapsiblePlugin/CollapsibleContainerNode.ts'
-import { CollapsibleContentNode } from '../plugins/CollapsiblePlugin/CollapsibleContentNode.ts'
-import { CollapsibleTitleNode } from '../plugins/CollapsiblePlugin/CollapsibleTitleNode.ts'
-import { AutocompleteNode } from './AutocompleteNode.tsx'
-import { EmojiNode } from './EmojiNode.tsx'
-import { EquationNode } from './EquationNode.tsx'
-import { ImageNode } from './ImageNode.tsx'
-import { KeywordNode } from './KeywordNode.ts'
-import { LayoutContainerNode } from './LayoutContainerNode.ts'
-import { LayoutItemNode } from './LayoutItemNode.ts'
-import { MentionNode } from './MentionNode.ts'
-import { PageBreakNode } from './PageBreakNode/index.tsx'
-import { YouTubeNode } from './YouTubeNode.tsx'
-import { ExtendedTextNode } from '../plugins/ExtentedTextNodePlugin/ExtendetextNodePugin.tsx'
+import { CollapsibleContainerNode } from '../plugins/CollapsiblePlugin/CollapsibleContainerNode'
+import { CollapsibleContentNode } from '../plugins/CollapsiblePlugin/CollapsibleContentNode'
+import { CollapsibleTitleNode } from '../plugins/CollapsiblePlugin/CollapsibleTitleNode'
+import { AutocompleteNode } from './AutocompleteNode'
+import { EmojiNode } from './EmojiNode'
+import { ImageNode } from './ImageNode'
+import { KeywordNode } from './KeywordNode'
+import { LayoutContainerNode } from './LayoutContainerNode'
+import { LayoutItemNode } from './LayoutItemNode'
+import { MentionNode } from './MentionNode'
+import { PageBreakNode } from './PageBreakNode/index'
+import { YouTubeNode } from './YouTubeNode'
+import { ExtendedTextNode } from '../plugins/ExtentedTextNodePlugin/ExtendetextNodePugin'
 import { ListNode, ListItemNode } from '@lexical/list'
-import { TableNode, TableCellNode, TableRowNode } from './TableNode/index.ts'
-import { VideoNode } from './VideoNode.tsx'
-import { SignatureNode } from './EmailSignatureNode.ts'
+import { TableNode, TableCellNode, TableRowNode } from './TableNode/index'
+import { VideoNode } from './VideoNode'
+import { SignatureNode } from './EmailSignatureNode'
 const PlaygroundNodes: Array<Klass<LexicalNode>> = [
   HeadingNode,
   ListNode,
@@ -50,7 +49,6 @@ const PlaygroundNodes: Array<Klass<LexicalNode>> = [
   ImageNode,
   MentionNode,
   EmojiNode,
-  EquationNode,
   AutocompleteNode,
   KeywordNode,
   HorizontalRuleNode,

@@ -39,11 +39,7 @@ import * as ReactDOM from 'react-dom'
 import useModal from '../../hooks/useModal.tsx'
 import { EmbedConfigs } from '../AutoEmbedPlugin/AutoEmbedPlugin.js'
 import { INSERT_COLLAPSIBLE_COMMAND } from '../CollapsiblePlugin/index.ts'
-import { InsertEquationDialog } from '../EquationsPlugin/index.tsx'
-import {
-  INSERT_IMAGE_COMMAND,
-  InsertImageDialog,
-} from '../ImagesPlugin/index.tsx'
+import { InsertImageDialog } from '../ImagesPlugin/index.tsx'
 import InsertLayoutDialog from '../LayoutPlugin/InsertLayoutDialog.tsx'
 import { INSERT_PAGE_BREAK } from '../PageBreakPlugin/index.tsx'
 import { InsertTableDialog } from '../TablePlugin.tsx'
@@ -251,14 +247,7 @@ function getBaseOptions(editor: LexicalEditor, showModal: ShowModal) {
             editor.dispatchCommand(INSERT_EMBED_COMMAND, embedConfig.type),
         })
     ),
-    new ComponentPickerOption('Equation', {
-      icon: <i className="icon equation" />,
-      keywords: ['equation', 'latex', 'math'],
-      onSelect: () =>
-        showModal('Insert Equation', (onClose) => (
-          <InsertEquationDialog activeEditor={editor} onClose={onClose} />
-        )),
-    }),
+
     new ComponentPickerOption('Image', {
       icon: <i className="icon image" />,
       keywords: ['image', 'photo', 'picture', 'file'],

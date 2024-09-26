@@ -37,7 +37,6 @@ import DragDropPaste from './plugins/DragDropPastePlugin/DragDropPastePlugin.js'
 import DraggableBlockPlugin from './plugins/DraggableBlockPlugin/index.tsx'
 import EmojiPickerPlugin from './plugins/EmojiPickerPlugin/index.tsx'
 import EmojisPlugin from './plugins/EmojisPlugin/index.ts'
-import EquationsPlugin from './plugins/EquationsPlugin/index.tsx'
 import FloatingLinkEditorPlugin from './plugins/FloatingLinkEditorPlugin/index.tsx'
 import FloatingTextFormatToolbarPlugin from './plugins/FloatingTextFormatToolbarPlugin/index.tsx'
 import ImagesPlugin from './plugins/ImagesPlugin/index.tsx'
@@ -386,7 +385,6 @@ export default function Editor({
           <HtmlPlugin onChange={onChange} />
           <ClickableLinkPlugin disabled={isEditable} />
           <HorizontalRulePlugin />
-          <EquationsPlugin />
           <TabFocusPlugin />
           <TabIndentationPlugin />
           <CollapsiblePlugin />

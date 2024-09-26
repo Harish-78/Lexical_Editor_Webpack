@@ -87,7 +87,6 @@ import { getSelectedNode } from '../../utils/getSelectedNode.ts'
 import { sanitizeUrl } from '../../utils/url.ts'
 import { EmbedConfigs } from '../AutoEmbedPlugin/AutoEmbedPlugin.js'
 import { INSERT_COLLAPSIBLE_COMMAND } from '../CollapsiblePlugin/index.ts'
-import { InsertEquationDialog } from '../EquationsPlugin/index.tsx'
 import { InsertImageDialog } from '../ImagesPlugin/index.tsx'
 import InsertLayoutDialog from '../LayoutPlugin/InsertLayoutDialog.tsx'
 import { INSERT_PAGE_BREAK } from '../PageBreakPlugin/index.tsx'
@@ -1000,20 +999,7 @@ export default function ToolbarPlugin({
                 <i className="icon columns" />
                 <span className="text">Columns Layout</span>
               </DropDownItem>
-              <DropDownItem
-                onClick={() => {
-                  showModal('Insert Equation', (onClose) => (
-                    <InsertEquationDialog
-                      activeEditor={activeEditor}
-                      onClose={onClose}
-                    />
-                  ))
-                }}
-                className="item"
-              >
-                <i className="icon equation" />
-                <span className="text">Equation</span>
-              </DropDownItem>
+
               <DropDownItem
                 onClick={() => {
                   editor.dispatchCommand(INSERT_COLLAPSIBLE_COMMAND, undefined)

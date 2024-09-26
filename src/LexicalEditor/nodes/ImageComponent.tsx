@@ -12,20 +12,9 @@ import type {
   LexicalEditor,
   NodeKey,
 } from 'lexical'
-
 import './ImageNode.css'
-
-import { HashtagNode } from '@lexical/hashtag'
-import { LinkNode } from '@lexical/link'
-import { AutoFocusPlugin } from '@lexical/react/LexicalAutoFocusPlugin'
 import { useCollaborationContext } from '@lexical/react/LexicalCollaborationContext'
-import { CollaborationPlugin } from '@lexical/react/LexicalCollaborationPlugin'
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext'
-import { LexicalErrorBoundary } from '@lexical/react/LexicalErrorBoundary'
-import { HashtagPlugin } from '@lexical/react/LexicalHashtagPlugin'
-import { HistoryPlugin } from '@lexical/react/LexicalHistoryPlugin'
-import { LexicalNestedComposer } from '@lexical/react/LexicalNestedComposer'
-import { RichTextPlugin } from '@lexical/react/LexicalRichTextPlugin'
 import { useLexicalNodeSelection } from '@lexical/react/useLexicalNodeSelection'
 import { mergeRegister } from '@lexical/utils'
 import {
@@ -42,28 +31,12 @@ import {
   KEY_DELETE_COMMAND,
   KEY_ENTER_COMMAND,
   KEY_ESCAPE_COMMAND,
-  LineBreakNode,
-  ParagraphNode,
-  RootNode,
   SELECTION_CHANGE_COMMAND,
-  TextNode,
 } from 'lexical'
-import * as React from 'react'
-import { Suspense, useCallback, useEffect, useRef, useState } from 'react'
-
-import { useSettings } from '../context/SettingsContext.tsx'
-import { useSharedHistoryContext } from '../context/SharedHistoryContext.tsx'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import brokenImage from '../images/image-broken.svg'
-import EmojisPlugin from '../plugins/EmojisPlugin/index.ts'
-import KeywordsPlugin from '../plugins/KeywordsPlugin/index.ts'
-import LinkPlugin from '../plugins/LinkPlugin/index.tsx'
-import MentionsPlugin from '../plugins/MentionsPlugin/index.tsx'
-import ContentEditable from '../ui/ContentEditable.tsx'
-import ImageResizer from '../ui/ImageResizer.tsx'
-import Placeholder from '../ui/Placeholder.tsx'
-import { EmojiNode } from './EmojiNode.tsx'
-import { $isImageNode } from './ImageNode.tsx'
-import { KeywordNode } from './KeywordNode.ts'
+import ImageResizer from '../ui/ImageResizer'
+import { $isImageNode } from './ImageNode'
 
 const imageCache = new Set()
 
@@ -385,89 +358,44 @@ export default function ImageComponent({
     setIsResizing(true)
   }
 
-  const { historyState } = useSharedHistoryContext()
-  const {
-    settings: { showNestedEditorTreeView },
-  } = useSettings()
-
   const draggable = isSelected && $isNodeSelection(selection) && !isResizing
   const isFocused = isSelected || isResizing
   return (
-    <Suspense fallback={null}>
-      <>
-        <div draggable={draggable}>
-          {isLoadError ? (
-            <BrokenImage />
-          ) : (
-            <LazyImage
-              className={
-                isFocused
-                  ? `focused ${$isNodeSelection(selection) ? 'draggable' : ''}`
-                  : null
-              }
-              src={src}
-              altText={altText}
-              imageRef={imageRef}
-              width={width}
-              height={height}
-              maxWidth={maxWidth}
-              onError={() => setIsLoadError(true)}
-            />
-          )}
-        </div>
-
-        {showCaption && (
-          <div className="image-caption-container">
-            <LexicalNestedComposer
-              initialEditor={caption}
-              initialNodes={[
-                RootNode,
-                TextNode,
-                LineBreakNode,
-                ParagraphNode,
-                LinkNode,
-                EmojiNode,
-                HashtagNode,
-                KeywordNode,
-              ]}
-            >
-              <AutoFocusPlugin />
-              <MentionsPlugin />
-              <LinkPlugin />
-              <EmojisPlugin />
-              <HashtagPlugin />
-              <KeywordsPlugin />
-
-              <HistoryPlugin externalHistoryState={historyState} />
-
-              <RichTextPlugin
-                contentEditable={
-                  <ContentEditable className="ImageNode__contentEditable" />
-                }
-                placeholder={
-                  <Placeholder className="ImageNode__placeholder">
-                    Enter a caption...
-                  </Placeholder>
-                }
-                ErrorBoundary={LexicalErrorBoundary}
-              />
-            </LexicalNestedComposer>
-          </div>
-        )}
-        {resizable && $isNodeSelection(selection) && isFocused && (
-          <ImageResizer
-            showCaption={showCaption}
-            setShowCaption={setShowCaption}
-            editor={editor}
-            buttonRef={buttonRef}
+    <>
+      <div draggable={draggable}>
+        {isLoadError ? (
+          <BrokenImage />
+        ) : (
+          <LazyImage
+            className={
+              isFocused
+                ? `focused ${$isNodeSelection(selection) ? 'draggable' : ''}`
+                : null
+            }
+            src={src}
+            altText={altText}
             imageRef={imageRef}
+            width={width}
+            height={height}
             maxWidth={maxWidth}
-            onResizeStart={onResizeStart}
-            onResizeEnd={onResizeEnd}
-            captionsEnabled={!isLoadError && captionsEnabled}
+            onError={() => setIsLoadError(true)}
           />
         )}
-      </>
-    </Suspense>
+      </div>
+
+      {resizable && $isNodeSelection(selection) && isFocused && (
+        <ImageResizer
+          showCaption={showCaption}
+          setShowCaption={setShowCaption}
+          editor={editor}
+          buttonRef={buttonRef}
+          imageRef={imageRef}
+          maxWidth={maxWidth}
+          onResizeStart={onResizeStart}
+          onResizeEnd={onResizeEnd}
+          captionsEnabled={!isLoadError && captionsEnabled}
+        />
+      )}
+    </>
   )
 }
